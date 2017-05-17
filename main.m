@@ -28,7 +28,7 @@ disp(['number of clusters in exp_G ' num2str(max(conncomp(exp_G)))])
 T = numnodes(exp_G);        % Time steps
 m = pCon*T/2;           % Nodes to add each time step (to get aprox same deg)
 offset = 4;
-sf_network = build_scaleFree(N, offset, m);
+sf_network = build_scaleFree(T, offset, m);
 
 sf_G = graph(sf_network);
 disp(['mean degree sf G ' num2str(mean(degree(sf_G)))])

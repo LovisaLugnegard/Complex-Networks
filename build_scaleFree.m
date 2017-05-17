@@ -15,9 +15,10 @@ while i < n0
     i = i + 2;
 end
 
+w1 = waitbar(0,'Building scale-free network...');
 degree(1:4) = 1;
 for t=(1 + offset):T
-
+    waitbar(t/T);
     % Determine probabilities
     sumK = sum(degree(1:t-1));
     p = degree(1:t-1)/sumK;
@@ -36,6 +37,6 @@ for t=(1 + offset):T
         end
     end
 end
-
+close(w1)
 end
 

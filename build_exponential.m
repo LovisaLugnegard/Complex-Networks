@@ -4,7 +4,7 @@ function [ network ] = build_exponential( N, link_density )
 
 % Build exponential network
 network = zeros(N,N);   % Network matrix
-waitbar(0, 'Progress');
+w1 = waitbar(0, 'Progress');
 % Populate network matrix
 for i=2:N
     
@@ -37,7 +37,7 @@ for i=1:N
     end
 end
 
-
+close(w1)
 
 end
 
