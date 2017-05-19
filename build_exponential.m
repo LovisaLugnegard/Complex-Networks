@@ -4,7 +4,7 @@ function [ network ] = build_exponential( N, link_density )
 
 % Build exponential network
 network = zeros(N,N);   % Network matrix
-w1 = waitbar(0, 'Progress');
+%w1 = waitbar(0, 'Building exponential network...');
 % Populate network matrix
 for i=2:N
     
@@ -14,12 +14,12 @@ for i=2:N
             network(i,j) = 1;
         end
     end
-    waitbar(i/N);
+   % waitbar(i/N);
 end
 
 network = network + network';
 
-disp(length(find(all(network == 0, 2))));
+%disp(length(find(all(network == 0, 2))));
 
 
 for i=1:N
@@ -37,7 +37,7 @@ for i=1:N
     end
 end
 
-close(w1)
+%close(w1)
 
 end
 

@@ -8,6 +8,7 @@ temp_Infected = infected;
 h = plot(G,'Layout','force');
 % figure;
 % hold on
+inf_0 = sum(infected);
 
 for t = 1:T
     
@@ -50,5 +51,7 @@ for t = 1:T
         break;
     end
 end
+
+infected_Count = [inf_0 infected_Count]; 
 end
 

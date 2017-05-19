@@ -2,8 +2,7 @@
 clear all;
 m_frac_val = 0.04; %max fraction value
 res = 0.002; %resolution
-% Build exponential network
-N = 10000;               % Number of individuals in network
+N = 1000;               % Number of individuals in network
 pCon = 0.0004;          % Probability of two individuals being connected
 
 %To build a network with only one cluster

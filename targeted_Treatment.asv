@@ -5,6 +5,7 @@ infected_Count = zeros(1,T);
 temp_Infected = infected;
 healthy_Neighbors = zeros(1,N);
 h = plot(G,'Layout','force');
+C = round(pInf*N); %How many to cure each time-step 
 
 inf_0 = sum(infected);
 
@@ -21,7 +22,7 @@ for t = 1:T
         end
     end 
     
-    infected = temp_Infected;
+    infected = temp_Inf
     
     %Treating individuals each time-step
     for i = 1:N
