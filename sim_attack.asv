@@ -14,6 +14,7 @@ S_avg = zeros(1, n_of_datapoints);
 S_max = zeros(1, n_of_datapoints);
 
 initial_d = find_diameter(G);
+initial_d = find_diameter(G);
 [initial_S_avg, initial_S_max] = find_clusters(G);
 
 % Print stuff
@@ -36,6 +37,6 @@ end
 % Prepare outputs
 frac_vec = [0 frac_vec];
 diameters = [initial_d diameters];
-S_avg = [0 S_avg];
-S_max = [1 S_max];
+S_avg = [initial_S_avg S_avg];
+S_max = [initial_S_max S_max];
 

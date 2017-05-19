@@ -56,13 +56,13 @@ disp(['number of clusters in sf_G ' num2str(max(conncomp(sf_G)))])
 % % plot(exp_frac_vals, a_sf_diameters, 'ro')
 % % legend('Failure, exp', 'Attack exp', 'Failure SF', 'Attack SF')
 % % hold off
-%
+
 figure
-plot(exp_frac_vals, exp_S_avg, 'b*')
+plot( exp_S_avg, 'b*')
 hold on
-plot(exp_frac_vals, exp_S_max, 'bo')
-plot(exp_frac_vals, a_exp_S_avg, 'r*')
-plot(exp_frac_vals, a_exp_S_max, 'ro')
+plot( exp_S_max, 'bo')
+plot( a_exp_S_avg, 'r*')
+plot( a_exp_S_max, 'ro')
 legend('Failure, <s>','Failure S', 'Attack <s>', 'Attack S')
 title('Exponential network')
 figure

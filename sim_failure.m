@@ -1,4 +1,4 @@
-function [ diameters, frac_vec, S_avg, S_max ] = sim_failure( network, frac_tot, resolution)
+function [ diameters, frac_vec, S_avg, S_max ] = sim_failure(network, frac_tot, resolution)
 %sim_failure : Randomly removes a fraction of nodes in network
 
 G = graph(network);
@@ -13,7 +13,7 @@ S_avg = zeros(1, n_of_datapoints);
 S_max = zeros(1, n_of_datapoints);
 
 initial_d = find_diameter(G);
-[initial_S_avg, initial_S_max] = find_clusters(G);
+%[initial_S_avg, initial_S_max] = find_clusters(G);
 
 % Print stuff
 disp(['network_size = ' num2str(network_size)])
@@ -38,6 +38,6 @@ end
 frac_vec = [0 frac_vec];
 diameters = [initial_d diameters];
 
-S_avg = [initial_S_avg S_avg];
-S_max = [initial_S_max S_max];
+S_avg = [0 S_avg];
+S_max = [1 S_max];
 
