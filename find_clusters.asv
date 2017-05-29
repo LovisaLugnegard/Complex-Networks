@@ -18,8 +18,7 @@ while(true)
         break;
     end
 end
-num_clusters = length(cluster_size);
-disp(['num_clusters = ' num2str(num_clusters)])
+
 %calculate S_avg and S_max
 
 %# of clusters
