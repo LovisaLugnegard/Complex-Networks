@@ -20,22 +20,22 @@ end
 network = network + network';
 
 %disp(length(find(all(network == 0, 2))));
-
-
-for i=1:N
-    if(sum(network(i,:)) ==0)
-        linked = false;
-        while ~linked
-            for j=1:N
-                if rand() < link_density
-                    network(i,j) = 1;
-                    network(j,i) = 1;
-                    linked = true;
-                end
-            end
-        end
-    end
-end
+% 
+% 
+% for i=1:N
+%     if(sum(network(i,:)) ==0)
+%         linked = false;
+%         while ~linked
+%             for j=1:N
+%                 if rand() < link_density
+%                     network(i,j) = 1;
+%                     network(j,i) = 1;
+%                     linked = true;
+%                 end
+%             end
+%         end
+%     end
+% end
 
 %close(w1)
 

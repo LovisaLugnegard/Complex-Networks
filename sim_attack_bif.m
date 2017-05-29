@@ -1,37 +1,29 @@
-function [ diameters, frac_vec ] = sim_attack( network, frac_tot, resolution)
+function [ max_size, final_G ] = sim_attack_bif( G, frac_tot)
 %sim_attack : Removes a fraction of nodes in network, targeting the nodes
 %             with the highest degree first
 
-G = graph(network);
-
-network_size = size(network,1);
-n_of_datapoints = floor(frac_tot/resolution);
-n_rem_each_step = round(resolution*network_size);
-
-diameters = zeros(1,n_of_datapoints);
-frac_vec  = zeros(1,n_of_datapoints);
-
-initial_d = find_diameter(G);
+network_size = numnodes(G);
+n_to_remove = round(frac_tot*network_size);
 
 % Print stuff
-disp(['network_size = ' num2str(network_size)])
-disp(['datapoints = ' num2str(n_of_datapoints)])
-disp(['rem_each = ' num2str(n_rem_each_step)])
+% disp(['network_size = ' num2str(network_size)])
+% disp(['datapoints = ' num2str(n_of_datapoints)])
+% disp(['rem_each = ' num2str(n_rem_each_step)])
 
-for i=1:n_of_datapoints
-    
-    for j=1:n_rem_each_step
-       [~, ind] = max(degree(G));
-       G = rmnode(G, ind);
-    end
-    
-    frac_vec(i) = i*n_rem_each_step/network_size;
-    diameters(i) = find_diameter(G);
-
+n_clusters = length(unique(conncomp(G)));
+disp(['Initial number of clusters: ' num2str(n_clusters) ' (' num2str(n_clusters/numnodes(G)) ')'])
+for j=1:n_to_remove
+    [~, ind] = max(degree(G));
+    G = rmnode(G, ind);
+%     disp(['j = ' int2str(j) ', Number of clusters: ' num2str(length(unique(conncomp(G))))])
 end
+n_clusters = length(unique(conncomp(G)));
+disp(['Afterwards: ' num2str(n_clusters) ' (' num2str(n_clusters/numnodes(G)) ')'])
+
+cluster_distribution = conncomp(G);
+largest_cluster = mode(cluster_distribution);
+max_size = sum(cluster_distribution == largest_cluster) / numnodes(G);
 
 % Prepare outputs
-frac_vec = [0 frac_vec];
-diameters = [initial_d diameters];
 final_G = G;
 
