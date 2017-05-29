@@ -6,8 +6,7 @@ C = round(fCure*N);
 infected_Count = zeros(1,T);
 temp_Infected = infected;
 h = plot(G,'Layout','force');
-% figure;
-% hold on
+
 inf_0 = sum(infected);
 
 for t = 1:T

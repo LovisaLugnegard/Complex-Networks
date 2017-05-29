@@ -1,6 +1,6 @@
 
 N = 1000;
-pCon = 0.2;
+pCon = 0.0126;
 test_n = build_exponential(N, pCon);
 test_G = graph(test_n);
 mean(degree(test_G))

@@ -1,13 +1,11 @@
 % FINAL PROJECT
 clear all;
-m_frac_val = 0.4; %max fraction value
-res = 0.01; %resolution
-N = 10000;               % Number of individuals in network
+m_frac_val = 0.4;       %max fraction value
+res = 0.01;             %resolution
+N = 10000;              % Number of individuals in network
 pCon = 0.0004;          % Probability of two individuals being connected
 
 %To build a network with only one cluster
-
-
 exp_network = build_exponential(N, pCon);
 exp_G = graph(exp_network);
 cluster_distribution = conncomp(exp_G);
@@ -56,7 +54,7 @@ disp(['number of clusters in sf_G ' num2str(max(conncomp(sf_G)))])
 % % plot(exp_frac_vals, a_sf_diameters, 'ro')
 % % legend('Failure, exp', 'Attack exp', 'Failure SF', 'Attack SF')
 % % hold off
-%
+
 figure
 plot(exp_frac_vals, exp_S_avg, 'b*')
 hold on

@@ -2,6 +2,9 @@ function [ max_size, final_G ] = sim_attack_bif( G, frac_tot)
 %sim_attack : Removes a fraction of nodes in network, targeting the nodes
 %             with the highest degree first
 
+% Debugging printout
+DP = 0;
+
 network_size = numnodes(G);
 n_to_remove = round(frac_tot*network_size);
 
@@ -11,14 +14,13 @@ n_to_remove = round(frac_tot*network_size);
 % disp(['rem_each = ' num2str(n_rem_each_step)])
 
 n_clusters = length(unique(conncomp(G)));
-disp(['Initial number of clusters: ' num2str(n_clusters) ' (' num2str(n_clusters/numnodes(G)) ')'])
+dp(['Initial number of clusters: ' num2str(n_clusters) ' (' num2str(n_clusters/numnodes(G)) ')'], DP);
 for j=1:n_to_remove
     [~, ind] = max(degree(G));
     G = rmnode(G, ind);
-%     disp(['j = ' int2str(j) ', Number of clusters: ' num2str(length(unique(conncomp(G))))])
 end
 n_clusters = length(unique(conncomp(G)));
-disp(['Afterwards: ' num2str(n_clusters) ' (' num2str(n_clusters/numnodes(G)) ')'])
+dp(['Afterwards: ' num2str(n_clusters) ' (' num2str(n_clusters/numnodes(G)) ')'], DP);
 
 cluster_distribution = conncomp(G);
 largest_cluster = mode(cluster_distribution);

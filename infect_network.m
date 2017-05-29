@@ -1,6 +1,6 @@
 function [ infected ] = infect_network( G, f_inf )
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+% infect_network : Infects the fraction f_inf of nodes in the network G
+
 size_G = numnodes(G);
 infected = zeros(1,size_G);
 

@@ -1,7 +1,6 @@
 function [max_size, final_G] = sim_failure_bif( G, frac_tot)
 %sim_failure : Randomly removes a fraction of nodes in network
 
-%G = graph(network);
 network_size = numnodes(G);
 n_to_remove = round(frac_tot*network_size);
 

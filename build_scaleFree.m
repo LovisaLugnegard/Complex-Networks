@@ -1,6 +1,9 @@
 function [ network ] = build_scaleFree( N, n0, m )
-%UNTITLED7 Summary of this function goes here
-%   Detailed explanation goes here
+% build_scaleFree : Build a scale-free network of N nodes using 
+% preferential attachment, starting with n0 nodes and connecting every new
+% node to m of the existing ones.
+
+% Modified to account for m < 1
 
 mode2 = 0;
 if m < 1
@@ -20,10 +23,9 @@ while i < n0
     i = i + 2;
 end
 
-%w1 = waitbar(0,'Building scale-free network...');
 degree(1:n0) = 1;
 for t=(1 + offset):T
-    % waitbar(t/T);
+    
     % Determine probabilities
     sumK = sum(degree(1:t-1));
     p = degree(1:t-1)/sumK;
@@ -48,7 +50,7 @@ for t=(1 + offset):T
         end
     end
 end
-%close(w1)
+
 
 end
 

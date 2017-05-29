@@ -1,11 +1,11 @@
-%Model extension for final project 
+% Model extension for final project 
 
 % Build exponential network
 N = 10000;               % Number of individuals in network
-pCon = 0.0004;          % Probability of two individuals being connected
-T = 100;                  %number of time-steps
-pInf = 0.01;             %probability in linked infection
-fCure = 0.09;           %fraction cured each time-step
+pCon = 0.0004;           % Probability of two individuals being connected
+T = 100;                 % number of time-steps
+pInf = 0.01;             % probability in linked infection
+fCure = 0.09;            % fraction cured each time-step
 f_start_inf = 0.1;
 
 %To build a network with only one cluster
@@ -25,8 +25,8 @@ offset = 4;
 sf_network = build_scaleFree(t_S, offset, m);
 
 sf_G = graph(sf_network);
-disp(['mean degree sf G ' num2str(mean(degree(sf_G)))])
-disp(['number of clusters in sf_G ' num2str(max(conncomp(sf_G)))])
+% disp(['mean degree sf G ' num2str(mean(degree(sf_G)))])
+% disp(['number of clusters in sf_G ' num2str(max(conncomp(sf_G)))])
 
 % Properties of networks
 size_Exp = numnodes(exp_G);
@@ -44,7 +44,7 @@ assert(sum(infected_exp)==sum(infected_sf));
 disp('___')
 disp('Random treatment')
 infected_Count_Random_exp = random_Treatment(exp_G, infected_exp, pInf, fCure, T);
-%
+
 infected_Count_Random_sf  = random_Treatment(sf_G, infected_sf, pInf, fCure, T);
 
 % Spreading and treating the disease targeted 

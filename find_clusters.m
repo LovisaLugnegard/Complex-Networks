@@ -1,15 +1,13 @@
 function [ s_avg, s_max ] = find_clusters( G )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+% find_clusters : Finds average cluster sizes and the maximum cluster size
+% in the network G
 
 cluster_distribution = conncomp(G);
 cluster_size = [];
 num_nodes = numnodes(G);
 
-
 i = 1;
 while(true)
-    
     C_size = sum(cluster_distribution == i);
     if(C_size>0)
         cluster_size(i) = C_size;
@@ -19,10 +17,6 @@ while(true)
     end
 end
 num_clusters = length(cluster_size);
-disp(['num_clusters = ' num2str(num_clusters)])
-%calculate S_avg and S_max
-
-%# of clusters
 
 s_max = max(cluster_size)/num_nodes;
 

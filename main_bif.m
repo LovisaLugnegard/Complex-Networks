@@ -5,7 +5,6 @@ DP = 0;
 m_frac_val = 0.4;               % Fraction of nodes to remove 
 N = 1000;                        % Number of individuals in network
 pCon_vals = logspace(-4,-1,100);  % Probability of two individuals being connected
-%pCon_vals = linspace(0.0001,1,50);
 resolution = 100;               % Resolution of bifur diag y axis
 nSim = 20;                      % # of sims to run for each network-pCon combination
 
@@ -46,7 +45,7 @@ for i=1:length(pCon_vals)
         largest_cluster = mode(cluster_distribution);
         
         % =====
-        % To build a network with only one cluster, uncomment these lies
+        % To build a network with only one cluster, uncomment these lines
 %         
 %         nodes_to_remove = find(cluster_distribution~=largest_cluster);
 %         exp_G = rmnode(exp_G,nodes_to_remove);
@@ -62,11 +61,9 @@ for i=1:length(pCon_vals)
         
         exp_G_sizes(i) = numnodes(exp_G);
         exp_G_degs(i) = mean(degree(exp_G));
-%         disp(['mean degree exp G ' num2str(mean_deg)])
-%         disp(['number of clusters in exp_G ' num2str(max(conncomp(exp_G)))])
         dp(['Successfully constructed exp network with ' num2str(numnodes(exp_G)) ' nodes!'],DP);
         exp_mean_deg = mean(degree(sf_G));
-        dp(['Mean exp deg : ' num2str(exp_mean_deg)],1);
+        dp(['Mean exp deg : ' num2str(exp_mean_deg)],DP);
         
         % === Scale-free network ===
         T = numnodes(exp_G);        % Time steps
@@ -83,8 +80,6 @@ for i=1:length(pCon_vals)
         sf_network = build_scaleFree(T, n0, m);
         
         sf_G = graph(sf_network);
-% %         disp(['mean degree sf G ' num2str(mean(degree(sf_G)))])
-% %         disp(['number of clusters in sf_G ' num2str(max(conncomp(sf_G)))])
 
         cluster_distribution = conncomp(sf_G);
         
@@ -113,7 +108,6 @@ for i=1:length(pCon_vals)
         % INDEXING
         exp_ind = find(size_range >= exp_max_fail_rel,1);
         sf_ind = find(size_range >= sf_max_fail_rel,1);
-%         disp(['Indices found: ' int2str(exp_ind) ' ' int2str(sf_ind)])
         
         exp_fail_clusters(exp_ind,i) = exp_fail_clusters(exp_ind,i)+1;
         sf_fail_clusters(sf_ind,i) = sf_fail_clusters(sf_ind,i)+1;
@@ -127,14 +121,13 @@ for i=1:length(pCon_vals)
         % INDEXING
         exp_ind = find(size_range >= exp_max_attack_rel,1);
         sf_ind = find(size_range >= sf_max_attack_rel,1);
-%         disp(['Indices found: ' int2str(exp_ind) ' ' int2str(sf_ind)])
         
         exp_attack_clusters(exp_ind,i) = exp_attack_clusters(exp_ind,i)+1;
         sf_attack_clusters(sf_ind,i) = sf_attack_clusters(sf_ind,i)+1;
         
     end
     exp_G_end_sizes(i) = numnodes(exp_G_end);
-%     sf_G_end_sizes(i) = numnodes(sf_G_end);
+
 end
 close(w1)
 disp('### Reached end of script without errors ###')
@@ -181,8 +174,3 @@ xlabel(x_lab)
 ylabel(y_lab)
 p0_plot_properties(h4);
 p0_save_fig(fig4, ['plot_bifur_sf_attack_N' num2str(N) '_nSim' num2str(nSim)]);
-
-% 
-
-
-

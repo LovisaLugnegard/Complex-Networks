@@ -1,10 +1,9 @@
 function [ network ] = build_exponential( N, link_density )
-%UNTITLED6 Summary of this function goes here
-%   Detailed explanation goes here
+% build_exponential : Builds an exponential network of N nodes and the
+% specified link density
 
-% Build exponential network
 network = zeros(N,N);   % Network matrix
-%w1 = waitbar(0, 'Building exponential network...');
+
 % Populate network matrix
 for i=2:N
     
@@ -14,7 +13,6 @@ for i=2:N
             network(i,j) = 1;
         end
     end
-   % waitbar(i/N);
 end
 
 network = network + network';
@@ -36,8 +34,6 @@ network = network + network';
 %         end
 %     end
 % end
-
-%close(w1)
 
 end
 

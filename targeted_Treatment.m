@@ -31,18 +31,14 @@ for t = 1:T
                           %individuals all sick people are linked to
         end
     end
+    
     %Choose which ones to cure
     [~, sorted_Index] = sort(healthy_Neighbors, 'descend');
     max_Index = sorted_Index(1:C);
     infected(max_Index) = 0; %only cure those with the most number of 
-                             %healthy links
-    
-                             
+                             %healthy links          
                            
     infected_Count(t) = sum(infected);
-     
-        
-
 end
 
 infected_Count = [inf_0 infected_Count]; 
